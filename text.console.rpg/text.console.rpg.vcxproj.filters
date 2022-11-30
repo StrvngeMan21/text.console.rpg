@@ -27,6 +27,18 @@
     <ClCompile Include="libs\stdafx.cpp">
       <Filter>Исходные файлы\libs</Filter>
     </ClCompile>
+    <ClCompile Include="libs\enemyImpl.cpp">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\playerImpl.cpp">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\actImpl.cpp">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\mapImpl.cpp">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\creature.h">
@@ -39,6 +51,15 @@
       <Filter>Исходные файлы\libs</Filter>
     </ClInclude>
     <ClInclude Include="libs\stdafx.h">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\act.h">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\plain.h">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\map.h">
       <Filter>Исходные файлы\libs</Filter>
     </ClInclude>
   </ItemGroup>

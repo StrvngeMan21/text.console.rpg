@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include "creature.h"
 
-class Creature::Impl 
-{ 
-};
+class Creature::Impl { };
 
 Creature::Creature() : d_(std::make_unique<Impl>()) {}
 Creature::Creature(int health, int strength, char id) : d_(std::make_unique<Impl>()), m_health{health}, m_str{strength}, m_id{id} { }

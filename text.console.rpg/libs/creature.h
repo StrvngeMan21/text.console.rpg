@@ -5,12 +5,15 @@
 class Creature
 {
 private:
-	class Impl;
-	std::unique_ptr<Impl> d_;
+	int m_xPos;
+	int m_yPos;
 
 	int m_health = 15;
 	int m_str = 5;
 	char m_id = 'C';
+
+	class Impl;
+	std::unique_ptr<Impl> d_;
 public:
 	Creature();
 	Creature(int health, int strength, char id);
