@@ -136,7 +136,9 @@
     <ClCompile Include="libs\actImpl.cpp" />
     <ClCompile Include="libs\creatureImp.cpp" />
     <ClCompile Include="libs\enemyImpl.cpp" />
+    <ClCompile Include="libs\mapChunkImpl.cpp" />
     <ClCompile Include="libs\mapImpl.cpp" />
+    <ClCompile Include="libs\plainImpl.cpp" />
     <ClCompile Include="libs\playerImpl.cpp" />
     <ClCompile Include="libs\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -156,6 +158,7 @@
     <ClInclude Include="libs\creature.h" />
     <ClInclude Include="libs\enemy.h" />
     <ClInclude Include="libs\map.h" />
+    <ClInclude Include="libs\mapChunk.h" />
     <ClInclude Include="libs\plain.h" />
     <ClInclude Include="libs\player.h" />
     <ClInclude Include="libs\stdafx.h" />

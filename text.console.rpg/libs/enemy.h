@@ -10,6 +10,7 @@ private:
 	std::unique_ptr<Impl> d_;
 public:
 	Enemy();
-	Enemy(int health, int strength, char id);
+	Enemy(int health, int strength, char id, int posX, int posY);
+	Enemy(int posX, int posY);
 	~Enemy();
 };

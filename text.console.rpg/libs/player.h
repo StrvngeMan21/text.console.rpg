@@ -10,6 +10,7 @@ private:
 	std::unique_ptr<Impl> d_;
 public:
 	Player();
-	Player(int health, int strength, char id);
+	Player(int health, int strength, char id, int posX, int posY);
+	Player(int posX, int posY);
 	~Player();
 };

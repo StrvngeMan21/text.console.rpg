@@ -1,3 +1,4 @@
-﻿  playerImpl.cpp
-  text.console.rpg.cpp
-  text.console.rpg.vcxproj -> C:\Users\merzlikin.ai1667\Source\Repos\StrvngeMan21\text.console.rpg\x64\Debug\text.console.rpg.exe
+﻿  text.console.rpg.cpp
+text.console.rpg.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl MapChunk<int>::MapChunk<int>(int const &)" (??0?$MapChunk@H@@QEAA@AEBH@Z) в функции main.
+text.console.rpg.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl MapChunk<int>::~MapChunk<int>(void)" (??1?$MapChunk@H@@QEAA@XZ) в функции main.
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\x64\Debug\text.console.rpg.exe : fatal error LNK1120: неразрешенных внешних элементов: 2

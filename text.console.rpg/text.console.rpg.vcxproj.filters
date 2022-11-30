@@ -39,6 +39,12 @@
     <ClCompile Include="libs\mapImpl.cpp">
       <Filter>Исходные файлы\libs</Filter>
     </ClCompile>
+    <ClCompile Include="libs\mapChunkImpl.cpp">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\plainImpl.cpp">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\creature.h">
@@ -60,6 +66,9 @@
       <Filter>Исходные файлы\libs</Filter>
     </ClInclude>
     <ClInclude Include="libs\map.h">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\mapChunk.h">
       <Filter>Исходные файлы\libs</Filter>
     </ClInclude>
   </ItemGroup>

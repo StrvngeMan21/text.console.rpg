@@ -1,8 +1,7 @@
 #pragma once
 
 #include "stdafx.h"
-#include "enemy.h"
-#include "player.h"
+#include "mapChunk.h"
 
 class Map
 {
@@ -16,8 +15,8 @@ public:
 	Map(int xSize, int ySize);
 	~Map();
 
-	void getXSize() const;
-	void getYSize() const;
+	int getXSize() const;
+	int getYSize() const;
 
 	void mapGen();
 };
