@@ -77,6 +77,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -92,6 +93,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -107,6 +109,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,6 +126,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <EnableModules>true</EnableModules>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,10 +138,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="libs\actImpl.cpp" />
+    <ClCompile Include="libs\controlsImpl.cpp" />
     <ClCompile Include="libs\creatureImp.cpp" />
     <ClCompile Include="libs\enemyImpl.cpp" />
-    <ClCompile Include="libs\mapChunkImpl.cpp" />
+    <ClCompile Include="libs\healImpl.cpp" />
     <ClCompile Include="libs\mapImpl.cpp" />
+    <ClCompile Include="libs\mapObjectsImpl.cpp" />
     <ClCompile Include="libs\plainImpl.cpp" />
     <ClCompile Include="libs\playerImpl.cpp" />
     <ClCompile Include="libs\stdafx.cpp">
@@ -155,10 +161,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\act.h" />
+    <ClInclude Include="libs\coldenstvo.h" />
+    <ClInclude Include="libs\controls.h" />
     <ClInclude Include="libs\creature.h" />
     <ClInclude Include="libs\enemy.h" />
+    <ClInclude Include="libs\heal.h" />
     <ClInclude Include="libs\map.h" />
-    <ClInclude Include="libs\mapChunk.h" />
+    <ClInclude Include="libs\mapObjects.h" />
     <ClInclude Include="libs\plain.h" />
     <ClInclude Include="libs\player.h" />
     <ClInclude Include="libs\stdafx.h" />

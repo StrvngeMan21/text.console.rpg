@@ -1,17 +1,21 @@
 #pragma once
 
 #include "stdafx.h"
+#include "mapObjects.h"
 
-class Plain
+class Plain: public MapObj
 {
 private:
-	int m_xPos;
-	int m_yPos;
 	char m_id = '_';
 
 	class Impl;
 	std::unique_ptr<Impl> d_;
 public:
-	Plain();
-	~Plain();
+	Plain(int posX, int posY);
+	virtual ~Plain();
+
+	virtual char getId() const;
+	virtual const char* getClass() const override;
+
+	virtual void setId(char id);
 };

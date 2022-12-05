@@ -18,9 +18,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="text.console.rpg.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="libs\creatureImp.cpp">
       <Filter>Исходные файлы\libs</Filter>
     </ClCompile>
@@ -39,10 +36,19 @@
     <ClCompile Include="libs\mapImpl.cpp">
       <Filter>Исходные файлы\libs</Filter>
     </ClCompile>
-    <ClCompile Include="libs\mapChunkImpl.cpp">
+    <ClCompile Include="libs\plainImpl.cpp">
       <Filter>Исходные файлы\libs</Filter>
     </ClCompile>
-    <ClCompile Include="libs\plainImpl.cpp">
+    <ClCompile Include="libs\mapObjectsImpl.cpp">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\healImpl.cpp">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClCompile>
+    <ClCompile Include="text.console.rpg.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="libs\controlsImpl.cpp">
       <Filter>Исходные файлы\libs</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,7 +74,16 @@
     <ClInclude Include="libs\map.h">
       <Filter>Исходные файлы\libs</Filter>
     </ClInclude>
-    <ClInclude Include="libs\mapChunk.h">
+    <ClInclude Include="libs\mapObjects.h">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\controls.h">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\heal.h">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="libs\coldenstvo.h">
       <Filter>Исходные файлы\libs</Filter>
     </ClInclude>
   </ItemGroup>

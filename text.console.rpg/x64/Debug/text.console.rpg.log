@@ -1,4 +1,8 @@
-﻿  text.console.rpg.cpp
-text.console.rpg.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl MapChunk<int>::MapChunk<int>(int const &)" (??0?$MapChunk@H@@QEAA@AEBH@Z) в функции main.
-text.console.rpg.obj : error LNK2019: ссылка на неразрешенный внешний символ "public: __cdecl MapChunk<int>::~MapChunk<int>(void)" (??1?$MapChunk@H@@QEAA@XZ) в функции main.
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\x64\Debug\text.console.rpg.exe : fatal error LNK1120: неразрешенных внешних элементов: 2
+﻿  controlsImpl.cpp
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(14,26): error C2059: синтаксическая ошибка: ;
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(18,63): error C2065: map: необъявленный идентификатор
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(19,65): error C2065: map: необъявленный идентификатор
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(20,65): error C2065: map: необъявленный идентификатор
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(21,65): error C2065: map: необъявленный идентификатор
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(27,7): error C2065: map: необъявленный идентификатор
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(28,22): error C3536: playerPtr: не может использоваться до инициализации
