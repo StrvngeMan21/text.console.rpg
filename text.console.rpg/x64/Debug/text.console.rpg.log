@@ -1,8 +1,24 @@
-﻿  controlsImpl.cpp
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(14,26): error C2059: синтаксическая ошибка: ;
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(18,63): error C2065: map: необъявленный идентификатор
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(19,65): error C2065: map: необъявленный идентификатор
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(20,65): error C2065: map: необъявленный идентификатор
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(21,65): error C2065: map: необъявленный идентификатор
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(27,7): error C2065: map: необъявленный идентификатор
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(28,22): error C3536: playerPtr: не может использоваться до инициализации
+﻿  mapImpl.cpp
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(82,6): error C3779: "Map::getUpObj": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(28): message : см. объявление "Map::getUpObj"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(89,3): error C3779: "Map::getPlayerPtr": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(27): message : см. объявление "Map::getPlayerPtr"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(90,3): error C3779: "Map::getUpObj": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(28): message : см. объявление "Map::getUpObj"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(95,4): error C3779: "Map::getPlayerPtr": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(27): message : см. объявление "Map::getPlayerPtr"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(96,4): error C3779: "Map::getUpObj": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(28): message : см. объявление "Map::getUpObj"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(100,4): error C3779: "Map::getPlayerPtr": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(27): message : см. объявление "Map::getPlayerPtr"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(101,4): error C3779: "Map::getUpObj": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(28): message : см. объявление "Map::getUpObj"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(105,4): error C3779: "Map::getPlayerPtr": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(27): message : см. объявление "Map::getPlayerPtr"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(106,4): error C3779: "Map::getUpObj": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(28): message : см. объявление "Map::getUpObj"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(110,4): error C3779: "Map::getPlayerPtr": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(27): message : см. объявление "Map::getPlayerPtr"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(111,4): error C3779: "Map::getUpObj": функцию, возвращающую "auto" нельзя использовать, предварительно не определив
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\map.h(28): message : см. объявление "Map::getUpObj"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(135): error C2102: для "&" требуется левостороннее значение

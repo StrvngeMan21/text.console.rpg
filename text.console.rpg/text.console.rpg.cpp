@@ -13,5 +13,5 @@ int main()
 	map.generate();
 	map.refresh();
 
-	ControlSystem::Move(map);
+	map.controlPlayer();
 }

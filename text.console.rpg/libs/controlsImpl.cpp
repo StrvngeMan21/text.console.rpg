@@ -6,6 +6,8 @@
 
 class ControlSystem::Impl { };
 
+
+/*
 ControlSystem::ControlSystem(const Map& map) : d_(std::make_unique<Impl>()),
 	m_map{ map } { }
 
@@ -28,3 +30,4 @@ void ControlSystem::Move()
 			Act::act(playerPtr,up);
 	}
 }
+*/

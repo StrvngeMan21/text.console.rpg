@@ -5,6 +5,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "heal.h"
+#include "act.h"
 #include "coldenstvo.h"
 
 class Map::Impl { };
@@ -76,48 +77,98 @@ void Map::setObjects()
 	}
 }
 
-std::unique_ptr<Creature, std::default_delete<MapObj>> Map::getPlayerPtr()
+void Map::move(char derection)
 {
-	auto ass = static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[m_ySize / 2][m_xSize / 2]);
-	return ass;
+	if (getUpObj()->getClass() != typeid(Plain).name())
+		dbg();
+		//Act::act(&getPlayerPtr(), &getUpObj());
+	else
+	{
+		int pXPos, pYPos;
+		int oXPos, oYPos;
+		getPlayerPtr()->getPos(&pXPos, &pYPos);
+		getUpObj()->getPos(&oXPos, &oYPos);
+
+		switch (derection)
+		{
+		case 'u':
+			getPlayerPtr()->setPos(pXPos, pYPos - 1);
+			getUpObj()->setPos(oXPos, oYPos + 1);
+			refresh();
+			break;
+		case 'd':
+			getPlayerPtr()->setPos(pXPos, pYPos + 1);
+			getUpObj()->setPos(oXPos, oYPos - 1);
+			refresh();
+			break;
+		case 'l':
+			getPlayerPtr()->setPos(pXPos - 1, pYPos);
+			getUpObj()->setPos(oXPos + 1, oYPos);
+			refresh();
+			break;
+		case 'r':
+			getPlayerPtr()->setPos(pXPos + 1, pYPos);
+			getUpObj()->setPos(oXPos - 1, oYPos);
+			refresh();
+			break;
+	}
 }
-std::unique_ptr<Creature, std::default_delete<MapObj>> Map::getUpObj()
+}
+
+Creature* Map::getPlayerPtr()
+{
+	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[m_ySize / 2][m_xSize / 2]).release();
+}
+auto* Map::getUpObj()
+{
+	int xCurrentPos, yCurrentPos;
+	getPlayerPtr()->getPos(&xCurrentPos, &yCurrentPos);
+
+	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]).release();
+}
+auto* Map::getDownObj()
 {
 	int xCurrentPos, yCurrentPos;
 
-	auto player = getPlayerPtr();
-	player->getPos(&xCurrentPos, &yCurrentPos);
-
-	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos-1][xCurrentPos]);
+	getPlayerPtr()->getPos(&xCurrentPos, &yCurrentPos);
+	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]).release();
 }
-std::unique_ptr<Creature, std::default_delete<MapObj>> Map::getDownObj()
+auto* Map::getLeftObj()
 {
 	int xCurrentPos, yCurrentPos;
+	getPlayerPtr()->getPos(&xCurrentPos, &yCurrentPos);
 
-	auto player = getPlayerPtr();
-	player->getPos(&xCurrentPos, &yCurrentPos);
-
-	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]);
+	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]).release();
 }
-std::unique_ptr<Creature, std::default_delete<MapObj>> Map::getLeftObj()
+auto* Map::getRightObj()
 {
 	int xCurrentPos, yCurrentPos;
+	getPlayerPtr()->getPos(&xCurrentPos, &yCurrentPos);
 
-	auto player = getPlayerPtr();
-	player->getPos(&xCurrentPos, &yCurrentPos);
-
-	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]);
+	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]).release();
 }
-std::unique_ptr<Creature, std::default_delete<MapObj>> Map::getRightObj()
+
+void Map::controlPlayer()
 {
-	int xCurrentPos, yCurrentPos;
+	int currentXPos, currentYPos;
 
-	auto player = getPlayerPtr();
-	player->getPos(&xCurrentPos, &yCurrentPos);
+	while (true)
+	{
+		getPlayerPtr()->getPos(&currentXPos, &currentYPos);
 
-	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]);
+		if (GetAsyncKeyState(VK_UP) && currentYPos >= 1)
+			move('u');
+
+		if (GetAsyncKeyState(VK_DOWN) && currentYPos <= m_ySize - 1)
+			move('d');
+
+		if (GetAsyncKeyState(VK_LEFT) && currentXPos >= 1)
+			move('l');
+
+		if (GetAsyncKeyState(VK_RIGHT) && currentXPos <= m_ySize - 1)
+			move('r');
+	}
 }
-
 
 void Map::generate() 
 {

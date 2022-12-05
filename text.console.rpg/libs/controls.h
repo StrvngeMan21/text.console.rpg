@@ -19,12 +19,12 @@ class ControlSystem
 {
 private:
 	Controls m_ctrl;
-	Map& m_map;
+	// Map& m_map;
 
 	class Impl;
 	std::unique_ptr<Impl> d_;
 public:
-	ControlSystem(const Map& map);
+	ControlSystem();
 	~ControlSystem();
 	static void Move();
 };
