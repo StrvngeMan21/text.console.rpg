@@ -18,10 +18,36 @@ Map::Map(int xSize, int ySize) : d_(std::make_unique<Impl>()),
 	m_seed = seed();
 }
 
-Map::~Map() { }
+void Map::upcastPtr(std::shared_ptr<MapObj> upcastingPtr)
+{
+	std::string origClass = upcastingPtr->getClass();
+	try {
+		if (origClass == typeid(Enemy).name() && typeid(upcastingPtr).name() != typeid(std::shared_ptr<Creature>()).name())
+			upcastingPtr = std::dynamic_pointer_cast<Creature>(upcastingPtr);
+		else if (origClass == typeid(HealEnt).name() && typeid(upcastingPtr).name() != typeid(std::shared_ptr<HealEnt>()).name())
+			upcastingPtr = std::dynamic_pointer_cast<HealEnt>(upcastingPtr);
+		throw -1;
+	}
+	catch (int a)
+	{
+		std::cerr << "Something upcasted wierd";
+	}
+}
 
-int Map::getXSize() const { return m_xSize; }
-int Map::getYSize() const { return m_ySize; }
+void Map::getArea()
+{
+	int xCurrentPos, yCurrentPos;
+	m_playerPtr->getPos(&xCurrentPos, &yCurrentPos);
+
+	if (yCurrentPos != 0)
+		m_UpObjPtr		= m_mapVec[yCurrentPos - 1][xCurrentPos];
+	if (yCurrentPos != 24)
+		m_DownObjPtr	= m_mapVec[yCurrentPos + 1][xCurrentPos];
+	if (xCurrentPos != 0)
+		m_LeftObjPtr	= m_mapVec[yCurrentPos][xCurrentPos - 1];
+	if (xCurrentPos != 24)
+		m_RightObjPtr	= m_mapVec[yCurrentPos][xCurrentPos + 1];
+}
 
 template <class T>
 void Map::fillWith()
@@ -38,32 +64,31 @@ void Map::fillWith()
 		int y = randY(rnd);
 
 		if (m_mapVec[y][x]->getClass() == typeid(Plain).name())
-			m_mapVec[y][x] = std::make_unique<T>(x, y);
+			m_mapVec[y][x] = std::move(std::make_unique<T>(x, y));
 		else
 		{
-			while (m_mapVec[y][x]->getClass() == typeid(Plain).name())
+			while (m_mapVec[y][x]->getClass() != typeid(Plain).name())
 			{
 				x = randX(rnd);
 				y = randY(rnd);
 			}
-			m_mapVec[y][x] = std::make_unique<T>(x, y);
+			m_mapVec[y][x] = std::move(std::make_unique<T>(x, y));
 		}
 	}
 }
-
 void Map::genObjects() 
 {
 	int playerPosX = m_xSize / 2;
 	int playerPosY = m_ySize / 2;
 
-	m_mapVec[playerPosY][playerPosX] = std::make_unique<Player>(playerPosX, playerPosY);
+	m_mapVec[playerPosY][playerPosX] = std::move(std::make_shared<Player>(playerPosX, playerPosY));
+	m_playerPtr = std::dynamic_pointer_cast<Creature>(m_mapVec[playerPosY][playerPosX]);
 
 	fillWith<Enemy>();
 	fillWith<HealEnt>();
 
 	setObjects();
 }
-
 void Map::setObjects()
 {
 	for (int y = 0; y < m_mapVec.size(); y++)
@@ -77,75 +102,98 @@ void Map::setObjects()
 	}
 }
 
+Map::~Map() { }
+
+int Map::getXSize() const { return m_xSize; }
+int Map::getYSize() const { return m_ySize; }
+
+
 void Map::move(char derection)
 {
-	if (getUpObj()->getClass() != typeid(Plain).name())
-		dbg();
-		//Act::act(&getPlayerPtr(), &getUpObj());
-	else
+	getArea();
+
+	int pXPos, pYPos;
+	int oXPos, oYPos;
+
+	m_playerPtr->getPos(&pXPos, &pYPos);
+
+	switch (derection)
 	{
-		int pXPos, pYPos;
-		int oXPos, oYPos;
-		getPlayerPtr()->getPos(&pXPos, &pYPos);
-		getUpObj()->getPos(&oXPos, &oYPos);
-
-		switch (derection)
+	case 'u':
+		m_UpObjPtr->getPos(&oXPos, &oYPos);
+		if (m_UpObjPtr->getClass() == typeid(Player).name())
 		{
-		case 'u':
-			getPlayerPtr()->setPos(pXPos, pYPos - 1);
-			getUpObj()->setPos(oXPos, oYPos + 1);
-			refresh();
-			break;
-		case 'd':
-			getPlayerPtr()->setPos(pXPos, pYPos + 1);
-			getUpObj()->setPos(oXPos, oYPos - 1);
-			refresh();
-			break;
-		case 'l':
-			getPlayerPtr()->setPos(pXPos - 1, pYPos);
-			getUpObj()->setPos(oXPos + 1, oYPos);
-			refresh();
-			break;
-		case 'r':
-			getPlayerPtr()->setPos(pXPos + 1, pYPos);
-			getUpObj()->setPos(oXPos - 1, oYPos);
-			refresh();
-			break;
+			m_playerPtr->setPos(pXPos, pYPos - 2);
+			m_UpObjPtr->setPos(oXPos, oYPos + 2);
+		}
+		else if (m_UpObjPtr->getClass() != typeid(Plain).name())
+		{
+			upcastPtr(m_UpObjPtr);
+			//Act::act(m_playerPtr, m_UpObjPtr);
+		}
+		else
+		{
+			m_playerPtr->setPos(pXPos, pYPos - 1);
+			m_UpObjPtr->setPos(oXPos, oYPos + 1);
+		}
+		break;
+	case 'd':
+		m_DownObjPtr->getPos(&oXPos, &oYPos);
+		if (m_DownObjPtr->getClass() == typeid(Player).name())
+		{
+			m_playerPtr->setPos(pXPos, pYPos + 2);
+			m_DownObjPtr->setPos(oXPos, oYPos - 2);
+		}
+		else if (m_DownObjPtr->getClass() != typeid(Plain).name())
+		{
+			upcastPtr(m_UpObjPtr);
+			//Act::act(m_playerPtr, m_UpObjPtr);
+		}
+		else
+		{
+			m_playerPtr->setPos(pXPos, pYPos + 1);
+			m_DownObjPtr->setPos(oXPos, oYPos - 1);
+		}
+		break;
+	case 'l':
+		m_LeftObjPtr->getPos(&oXPos, &oYPos);
+		if (m_LeftObjPtr->getClass() == typeid(Player).name())
+		{
+			m_playerPtr->setPos(pXPos - 2, pYPos);
+			m_LeftObjPtr->setPos(oXPos + 2, oYPos);
+		}
+		else if (m_LeftObjPtr->getClass() != typeid(Plain).name())
+		{
+			upcastPtr(m_UpObjPtr);
+			//Act::act(m_playerPtr, m_UpObjPtr);
+		}
+		else
+		{
+			m_playerPtr->setPos(pXPos - 1, pYPos);
+			m_LeftObjPtr->setPos(oXPos + 1, oYPos);
+		}
+		break;
+	case 'r':
+		m_RightObjPtr->getPos(&oXPos, &oYPos);
+		if (m_RightObjPtr->getClass() == typeid(Player).name())
+		{
+			m_playerPtr->setPos(pXPos + 2, pYPos);
+			m_RightObjPtr->setPos(oXPos - 2, oYPos);
+		}
+		else if (m_RightObjPtr->getClass() != typeid(Plain).name())
+		{
+			upcastPtr(m_UpObjPtr);
+			//Act::act(m_playerPtr, m_UpObjPtr);
+		}
+		else
+		{
+			m_playerPtr->setPos(pXPos + 1, pYPos);
+			m_RightObjPtr->setPos(oXPos - 1, oYPos);
+		}
 	}
-}
-}
-
-Creature* Map::getPlayerPtr()
-{
-	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[m_ySize / 2][m_xSize / 2]).release();
-}
-auto* Map::getUpObj()
-{
-	int xCurrentPos, yCurrentPos;
-	getPlayerPtr()->getPos(&xCurrentPos, &yCurrentPos);
-
-	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]).release();
-}
-auto* Map::getDownObj()
-{
-	int xCurrentPos, yCurrentPos;
-
-	getPlayerPtr()->getPos(&xCurrentPos, &yCurrentPos);
-	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]).release();
-}
-auto* Map::getLeftObj()
-{
-	int xCurrentPos, yCurrentPos;
-	getPlayerPtr()->getPos(&xCurrentPos, &yCurrentPos);
-
-	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]).release();
-}
-auto* Map::getRightObj()
-{
-	int xCurrentPos, yCurrentPos;
-	getPlayerPtr()->getPos(&xCurrentPos, &yCurrentPos);
-
-	return static_unique_ptr_cast<Creature, MapObj, std::default_delete<MapObj>>(m_mapVec[yCurrentPos - 1][xCurrentPos]).release();
+	getArea();
+	refresh();
+	dbg();
 }
 
 void Map::controlPlayer()
@@ -154,18 +202,18 @@ void Map::controlPlayer()
 
 	while (true)
 	{
-		getPlayerPtr()->getPos(&currentXPos, &currentYPos);
+		m_playerPtr->getPos(&currentXPos, &currentYPos);
 
-		if (GetAsyncKeyState(VK_UP) && currentYPos >= 1)
+		if (GetKeyState(VK_UP) & 0x8000 && currentYPos >= 1)
 			move('u');
 
-		if (GetAsyncKeyState(VK_DOWN) && currentYPos <= m_ySize - 1)
+		if (GetKeyState(VK_DOWN) & 0x8000 && currentYPos <= m_ySize - 2)
 			move('d');
 
-		if (GetAsyncKeyState(VK_LEFT) && currentXPos >= 1)
+		if (GetKeyState(VK_LEFT) & 0x8000 && currentXPos >= 1)
 			move('l');
 
-		if (GetAsyncKeyState(VK_RIGHT) && currentXPos <= m_ySize - 1)
+		if (GetKeyState(VK_RIGHT) & 0x8000 && currentXPos <= m_ySize - 2)
 			move('r');
 	}
 }
@@ -174,11 +222,11 @@ void Map::generate()
 {
 	for (int y = 0; y < m_ySize; y++)
 	{
-		std::vector<std::unique_ptr<MapObj>> tempVec;
+		std::vector<std::shared_ptr<MapObj>> tempVec;
 
 		for (int x = 0; x < m_ySize; x++)
 		{
-			tempVec.push_back(std::make_unique<Plain>(x, y));
+			tempVec.push_back(std::make_shared<Plain>(x, y));
 		}
 		m_mapVec.push_back(std::move(tempVec));
 	}
@@ -187,6 +235,10 @@ void Map::generate()
 
 void Map::refresh()
 {
+	system("cls");
+
+	char renderMap[25][25];
+
 	for (int y = 0; y < m_mapVec.size(); y++)
 	{
 		for (int x = 0; x < m_mapVec[y].size(); x++)
@@ -194,7 +246,14 @@ void Map::refresh()
 			int objPosX, objPosY;
 			m_mapVec[y][x]->getPos(&objPosX, &objPosY);
 
-			std::cout << m_mapVec[objPosY][objPosX]->getId();
+			renderMap[objPosY][objPosX] = m_mapVec[y][x]->getId();
+		}
+	}
+	for (int y = 0; y < m_mapVec.size(); y++)
+	{
+		for (int x = 0; x < m_mapVec[y].size(); x++)
+		{
+			std::cout << renderMap[y][x];
 		}
 		std::cout << std::endl;
 	}
@@ -202,9 +261,11 @@ void Map::refresh()
 
 void Map::dbg()
 {
-	std::cout << m_seed << std::endl;
+	/*m_playerPtr->printDbg();
+	std::cout << typeid(m_playerPtr).name();
 
-	refresh();
-
-	std::cout << static_cast<Creature*>(m_mapVec[12][12].get())->getHealth();
+	m_playerPtr = std::make_shared<Enemy>(2, 2);
+	std::cout << typeid(m_playerPtr).name() << " " << m_playerPtr->getId();
+	*/
+	std::cout << m_UpObjPtr->getId() << " " << m_DownObjPtr->getId() << " " << m_LeftObjPtr->getId() << " " << m_RightObjPtr->getId() << std::endl;
 }

@@ -15,7 +15,7 @@ private:
 	std::unique_ptr<Impl> d_;
 public:
 	template <class T1, class T2>
-	static void act(T1* player, T2* obj);
+	static void act(T1 player, T2 obj);
 	
 	static void dbg();
 };

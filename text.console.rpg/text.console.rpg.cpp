@@ -14,4 +14,8 @@ int main()
 	map.refresh();
 
 	map.controlPlayer();
+
+	map.dbg();
+
+
 }
