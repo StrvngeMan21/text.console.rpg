@@ -9,11 +9,11 @@
 
 int main()
 {
-	Map map(25, 25);
+	Map map;
 	map.generate();
 	map.refresh();
 
-	map.controlPlayer();
+	ControlSystem::takeControl();
 
 	map.dbg();
 

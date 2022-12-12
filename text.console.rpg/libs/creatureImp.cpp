@@ -26,5 +26,12 @@ void Creature::setId(char id) { m_id = id; }
 const char* Creature::getClass() const { return typeid(Creature).name(); }
 
 void Creature::decHealthBy(int value) { m_health -= value; }
+void Creature::getStatus(int& health, int& strength) { health = m_health; strength = m_str; }
+
+void Creature::checkHealth()
+{
+	if (m_health <= 0)
+		Creature::~Creature();
+}
 
 void Creature::printDbg() { std::cout << "Now I am here"; }

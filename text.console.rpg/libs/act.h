@@ -4,7 +4,9 @@
 
 class Act
 {
-private:	
+private:
+	friend class Map;
+
 	template <class T1, class T2>
 	static void fight(const T1& player, const T2& obj);
 
@@ -15,7 +17,7 @@ private:
 	std::unique_ptr<Impl> d_;
 public:
 	template <class T1, class T2>
-	static void act(T1 player, T2 obj);
+	static void act(const T1& player, const T2& obj);
 	
 	static void dbg();
 };

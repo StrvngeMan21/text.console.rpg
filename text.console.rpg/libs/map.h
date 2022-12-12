@@ -3,54 +3,51 @@
 #include "stdafx.h"
 #include "mapObjects.h"
 #include "creature.h"
+#include "controls.h"
 
 class Map
 {
 protected:
+	static int m_xSize;
+	static int m_ySize;
 
-	std::shared_ptr<Creature> m_playerPtr;
+	friend class ControlSystem;
 
-	std::shared_ptr<MapObj> m_UpObjPtr;
-	std::shared_ptr<MapObj> m_DownObjPtr;
-	std::shared_ptr<MapObj> m_LeftObjPtr;
-	std::shared_ptr<MapObj> m_RightObjPtr;
+	static std::array<std::array<std::shared_ptr<MapObj>, 25>, 25> m_mapVec;
 
-	void upcastPtr(std::shared_ptr<MapObj> upcastingPtr);
+	static std::shared_ptr<Creature> m_playerPtr;
+
+	static std::shared_ptr<MapObj> m_UpObjPtr;
+	static std::shared_ptr<MapObj> m_DownObjPtr;
+	static std::shared_ptr<MapObj> m_LeftObjPtr;
+	static std::shared_ptr<MapObj> m_RightObjPtr;
+
+	static void getArea();
 private:
-	int m_xSize;
-	int m_ySize;
 	int m_seed;
 
-	std::array<std::array<std::shared_ptr<MapObj>, 25>, 25> m_mapVec;
 
-	void getArea();
-	
 	void genObjects();
 	template <class T>
 	void fillWith();
 	void setObjects();
 
-	void swapPtrs(std::shared_ptr<MapObj> &first, std::shared_ptr<MapObj> &second);
-	void move(char derection);
+	static void swapPtrs(std::shared_ptr<MapObj> &first, std::shared_ptr<MapObj> &second);
 
 	class Impl;
 	std::unique_ptr<Impl> d_;
 public:
-	Map(int xSize, int ySize);
+	Map();
 	~Map();
 
-	friend class Act;
-
-	int getXSize() const;
-	int getYSize() const;
-
-	void controlPlayer();
+	static int getXSize();
+	static int getYSize();
 
 	void generate();
 
-	void refresh();
+	static void refresh();
 
-	void dbg();
+	static void dbg();
 
 	// std::vector<std::vector<std::unique_ptr<MapObj>>>& getMap();
 };

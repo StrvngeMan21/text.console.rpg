@@ -1,7 +1,16 @@
-﻿  controlsImpl.cpp
-  mapImpl.cpp
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(30,15): warning C4101: a: неиспользованная локальная переменная
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(264,7): warning C4101: renderMap: неиспользованная локальная переменная
-  Создание кода...
-  text.console.rpg.cpp
-  text.console.rpg.vcxproj -> C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\x64\Debug\text.console.rpg.exe
+﻿  text.console.rpg.cpp
+controlsImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::array<class std::array<class std::shared_ptr<class MapObj>,25>,25> Map::m_mapVec" (?m_mapVec@Map@@1V?$array@V?$array@V?$shared_ptr@VMapObj@@@std@@$0BJ@@std@@$0BJ@@std@@A).
+mapImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::array<class std::array<class std::shared_ptr<class MapObj>,25>,25> Map::m_mapVec" (?m_mapVec@Map@@1V?$array@V?$array@V?$shared_ptr@VMapObj@@@std@@$0BJ@@std@@$0BJ@@std@@A).
+controlsImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::shared_ptr<class Creature> Map::m_playerPtr" (?m_playerPtr@Map@@1V?$shared_ptr@VCreature@@@std@@A).
+mapImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::shared_ptr<class Creature> Map::m_playerPtr" (?m_playerPtr@Map@@1V?$shared_ptr@VCreature@@@std@@A).
+controlsImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::shared_ptr<class MapObj> Map::m_UpObjPtr" (?m_UpObjPtr@Map@@1V?$shared_ptr@VMapObj@@@std@@A).
+mapImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::shared_ptr<class MapObj> Map::m_UpObjPtr" (?m_UpObjPtr@Map@@1V?$shared_ptr@VMapObj@@@std@@A).
+controlsImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::shared_ptr<class MapObj> Map::m_DownObjPtr" (?m_DownObjPtr@Map@@1V?$shared_ptr@VMapObj@@@std@@A).
+mapImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::shared_ptr<class MapObj> Map::m_DownObjPtr" (?m_DownObjPtr@Map@@1V?$shared_ptr@VMapObj@@@std@@A).
+controlsImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::shared_ptr<class MapObj> Map::m_LeftObjPtr" (?m_LeftObjPtr@Map@@1V?$shared_ptr@VMapObj@@@std@@A).
+mapImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::shared_ptr<class MapObj> Map::m_LeftObjPtr" (?m_LeftObjPtr@Map@@1V?$shared_ptr@VMapObj@@@std@@A).
+controlsImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::shared_ptr<class MapObj> Map::m_RightObjPtr" (?m_RightObjPtr@Map@@1V?$shared_ptr@VMapObj@@@std@@A).
+mapImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static class std::shared_ptr<class MapObj> Map::m_RightObjPtr" (?m_RightObjPtr@Map@@1V?$shared_ptr@VMapObj@@@std@@A).
+mapImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static int Map::m_xSize" (?m_xSize@Map@@1HA).
+mapImpl.obj : error LNK2001: неразрешенный внешний символ "protected: static int Map::m_ySize" (?m_ySize@Map@@1HA).
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\x64\Debug\text.console.rpg.exe : fatal error LNK1120: неразрешенных внешних элементов: 8

@@ -9,22 +9,20 @@ enum class Controls
 	down	= VK_DOWN,
 	left	= VK_LEFT,
 	right	= VK_RIGHT,
-	saveU	= 'S',
-	saveD	= 's',
-	exitU	= 'E',
-	ecitD	= 'e'
+	exitU	= 'E' | 'e',
 };
 
 class ControlSystem
 {
 private:
-	Controls m_ctrl;
-	// Map& m_map;
+	static void upcastPtr(std::shared_ptr<MapObj> upcastingPtr);
 
 	class Impl;
 	std::unique_ptr<Impl> d_;
 public:
 	ControlSystem();
 	~ControlSystem();
-	static void Move();
+
+	static void takeControl();
+	static void move(Controls button);
 };

@@ -51,6 +51,9 @@
     <ClCompile Include="libs\controlsImpl.cpp">
       <Filter>Исходные файлы\libs</Filter>
     </ClCompile>
+    <ClCompile Include="libs\statusBarImpl.cpp">
+      <Filter>Исходные файлы\libs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libs\creature.h">
@@ -83,7 +86,7 @@
     <ClInclude Include="libs\heal.h">
       <Filter>Исходные файлы\libs</Filter>
     </ClInclude>
-    <ClInclude Include="libs\coldenstvo.h">
+    <ClInclude Include="libs\statusBar.h">
       <Filter>Исходные файлы\libs</Filter>
     </ClInclude>
   </ItemGroup>

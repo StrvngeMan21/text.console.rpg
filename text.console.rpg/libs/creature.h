@@ -5,13 +5,11 @@
 
 class Creature : public MapObj
 {
-private:
+protected:
 	int m_health = 15;
 	int m_str = 5;
 	char m_id = 'C';
-
-	void checkHealth();
-
+private:
 	class Impl;
 	std::unique_ptr<Impl> d_;
 public:
@@ -29,6 +27,9 @@ public:
 	virtual void setId(char id);
 
 	void decHealthBy(int value);
+	void getStatus(int& health, int& strength);
+
+	virtual void checkHealth();
 
 	void printDbg();
 };
