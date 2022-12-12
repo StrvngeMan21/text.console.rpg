@@ -1,3 +1,7 @@
-﻿  mapImpl.cpp
-C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(31,13): warning C4101: a: неиспользованная локальная переменная
+﻿  controlsImpl.cpp
+  mapImpl.cpp
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(30,15): warning C4101: a: неиспользованная локальная переменная
+C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\text.console.rpg\libs\mapImpl.cpp(264,7): warning C4101: renderMap: неиспользованная локальная переменная
+  Создание кода...
+  text.console.rpg.cpp
   text.console.rpg.vcxproj -> C:\Users\stran\Desktop\Взлом жопы\text.console.rpg\x64\Debug\text.console.rpg.exe

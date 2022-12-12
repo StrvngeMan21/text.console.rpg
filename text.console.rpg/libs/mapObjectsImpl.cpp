@@ -4,6 +4,8 @@
 
 class MapObj::Impl { };
 
+MapObj::MapObj() : d_(std::make_unique<Impl>()),
+	m_xPos{ 0 }, m_yPos{ 0 }, m_id{ 'O' } { }
 MapObj::MapObj(int posX, int posY, char id) : d_(std::make_unique<Impl>()), 
 	m_xPos{ posX }, m_yPos{ posY }, m_id{ id } { }
 MapObj::~MapObj() { }

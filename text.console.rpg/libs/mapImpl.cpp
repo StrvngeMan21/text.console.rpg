@@ -27,8 +27,7 @@ void Map::upcastPtr(std::shared_ptr<MapObj> upcastingPtr)
 		else if (origClass == typeid(HealEnt).name() && typeid(upcastingPtr).name() != typeid(std::shared_ptr<HealEnt>()).name())
 			upcastingPtr = std::dynamic_pointer_cast<HealEnt>(upcastingPtr);
 		throw -1;
-	}
-	catch (int a)
+	} catch (int a)
 	{
 		std::cerr << "Something upcasted wierd";
 	}
@@ -64,7 +63,7 @@ void Map::fillWith()
 		int y = randY(rnd);
 
 		if (m_mapVec[y][x]->getClass() == typeid(Plain).name())
-			m_mapVec[y][x] = std::move(std::make_unique<T>(x, y));
+			m_mapVec[y][x] = std::move(std::make_shared<T>(x, y));
 		else
 		{
 			while (m_mapVec[y][x]->getClass() != typeid(Plain).name())
@@ -72,7 +71,7 @@ void Map::fillWith()
 				x = randX(rnd);
 				y = randY(rnd);
 			}
-			m_mapVec[y][x] = std::move(std::make_unique<T>(x, y));
+			m_mapVec[y][x] = std::move(std::make_shared<T>(x, y));
 		}
 	}
 }
@@ -107,6 +106,14 @@ Map::~Map() { }
 int Map::getXSize() const { return m_xSize; }
 int Map::getYSize() const { return m_ySize; }
 
+void Map::swapPtrs(std::shared_ptr<MapObj> &first, std::shared_ptr<MapObj> &second)
+{
+	std::shared_ptr<MapObj> temp;
+
+	temp = std::move(second);
+	second = std::move(first);
+	first = std::move(temp);
+}
 
 void Map::move(char derection)
 {
@@ -135,6 +142,8 @@ void Map::move(char derection)
 		{
 			m_playerPtr->setPos(pXPos, pYPos - 1);
 			m_UpObjPtr->setPos(oXPos, oYPos + 1);
+
+			swapPtrs(m_mapVec[pYPos][pXPos], m_mapVec[oYPos][oXPos]);
 		}
 		break;
 	case 'd':
@@ -153,6 +162,8 @@ void Map::move(char derection)
 		{
 			m_playerPtr->setPos(pXPos, pYPos + 1);
 			m_DownObjPtr->setPos(oXPos, oYPos - 1);
+
+			swapPtrs(m_mapVec[pYPos][pXPos], m_mapVec[oYPos][oXPos]);
 		}
 		break;
 	case 'l':
@@ -171,6 +182,8 @@ void Map::move(char derection)
 		{
 			m_playerPtr->setPos(pXPos - 1, pYPos);
 			m_LeftObjPtr->setPos(oXPos + 1, oYPos);
+
+			swapPtrs(m_mapVec[pYPos][pXPos], m_mapVec[oYPos][oXPos]);
 		}
 		break;
 	case 'r':
@@ -187,8 +200,10 @@ void Map::move(char derection)
 		}
 		else
 		{
-			m_playerPtr->setPos(pXPos + 1, pYPos);
+ 			m_playerPtr->setPos(pXPos + 1, pYPos);
 			m_RightObjPtr->setPos(oXPos - 1, oYPos);
+
+			swapPtrs(m_mapVec[pYPos][pXPos], m_mapVec[oYPos][oXPos]);
 		}
 	}
 	getArea();
@@ -205,16 +220,28 @@ void Map::controlPlayer()
 		m_playerPtr->getPos(&currentXPos, &currentYPos);
 
 		if (GetKeyState(VK_UP) & 0x8000 && currentYPos >= 1)
+		{
 			move('u');
+			while (GetKeyState(VK_UP) & 0x8000) {}
+		}
 
 		if (GetKeyState(VK_DOWN) & 0x8000 && currentYPos <= m_ySize - 2)
+		{
 			move('d');
+			while (GetKeyState(VK_DOWN) & 0x8000) {}
+		}
 
 		if (GetKeyState(VK_LEFT) & 0x8000 && currentXPos >= 1)
+		{
 			move('l');
+			while (GetKeyState(VK_LEFT) & 0x8000) {}
+		}
 
 		if (GetKeyState(VK_RIGHT) & 0x8000 && currentXPos <= m_ySize - 2)
+		{
 			move('r');
+			while (GetKeyState(VK_RIGHT) & 0x8000) {}
+		}
 	}
 }
 
@@ -222,13 +249,10 @@ void Map::generate()
 {
 	for (int y = 0; y < m_ySize; y++)
 	{
-		std::vector<std::shared_ptr<MapObj>> tempVec;
-
 		for (int x = 0; x < m_ySize; x++)
 		{
-			tempVec.push_back(std::make_shared<Plain>(x, y));
+			m_mapVec[y][x] = std::move(std::make_shared<Plain>(x, y));
 		}
-		m_mapVec.push_back(std::move(tempVec));
 	}
 	genObjects();
 }
@@ -245,18 +269,21 @@ void Map::refresh()
 		{
 			int objPosX, objPosY;
 			m_mapVec[y][x]->getPos(&objPosX, &objPosY);
-
-			renderMap[objPosY][objPosX] = m_mapVec[y][x]->getId();
+			/*
+			m_mapVec[y][x]->getPos(&objPosX, &objPosY);
+			renderMap[objPosY][objPosX] = m_mapVec[y][x]->getId();*/
+			std::cout << m_mapVec.at(objPosY).at(objPosX)->getId();
 		}
+		std::cout << std::endl;
 	}
-	for (int y = 0; y < m_mapVec.size(); y++)
+	/*for (int y = 0; y < m_mapVec.size(); y++)
 	{
 		for (int x = 0; x < m_mapVec[y].size(); x++)
 		{
 			std::cout << renderMap[y][x];
 		}
 		std::cout << std::endl;
-	}
+	}*/
 }
 
 void Map::dbg()

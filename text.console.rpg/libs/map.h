@@ -7,7 +7,6 @@
 class Map
 {
 protected:
-	std::vector<std::vector<std::shared_ptr<MapObj>>> m_mapVec;
 
 	std::shared_ptr<Creature> m_playerPtr;
 
@@ -22,6 +21,8 @@ private:
 	int m_ySize;
 	int m_seed;
 
+	std::array<std::array<std::shared_ptr<MapObj>, 25>, 25> m_mapVec;
+
 	void getArea();
 	
 	void genObjects();
@@ -29,6 +30,7 @@ private:
 	void fillWith();
 	void setObjects();
 
+	void swapPtrs(std::shared_ptr<MapObj> &first, std::shared_ptr<MapObj> &second);
 	void move(char derection);
 
 	class Impl;

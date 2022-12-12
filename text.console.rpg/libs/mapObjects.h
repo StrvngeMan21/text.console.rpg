@@ -13,6 +13,7 @@ private:
 	std::unique_ptr<Impl> d_;
 protected:
 public:
+	MapObj();
 	MapObj(int posX, int posY, char id);
 	virtual ~MapObj();
 
