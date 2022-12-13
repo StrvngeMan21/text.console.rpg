@@ -8,11 +8,15 @@
 #include "plain.h"
 #include "act.h"
 
-class ControlSystem::Impl { };
 
+class ControlSystem::Impl
+{
 
-ControlSystem::ControlSystem() : d_(std::make_unique<Impl>())
-{ }
+};
+
+ControlSystem::ControlSystem() : d_(std::make_unique<Impl>()) {}
+
+ControlSystem::~ControlSystem() {}
 
 void ControlSystem::upcastPtr(std::shared_ptr<MapObj> upcastingPtr)
 {

@@ -7,11 +7,10 @@
 
 class Map
 {
+	friend class ControlSystem;
 protected:
 	static int m_xSize;
 	static int m_ySize;
-
-	friend class ControlSystem;
 
 	static std::array<std::array<std::shared_ptr<MapObj>, 25>, 25> m_mapVec;
 
@@ -26,7 +25,6 @@ protected:
 private:
 	int m_seed;
 
-
 	void genObjects();
 	template <class T>
 	void fillWith();
@@ -34,8 +32,6 @@ private:
 
 	static void swapPtrs(std::shared_ptr<MapObj> &first, std::shared_ptr<MapObj> &second);
 
-	class Impl;
-	std::unique_ptr<Impl> d_;
 public:
 	Map();
 	~Map();
@@ -49,5 +45,6 @@ public:
 
 	static void dbg();
 
-	// std::vector<std::vector<std::unique_ptr<MapObj>>>& getMap();
+	class Impl;
+	std::unique_ptr<Impl> d_;
 };

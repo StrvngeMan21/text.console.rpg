@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\text.console.rpg",
+    "\\text.console.rpg\\x64"
   ],
   "SelectedNode": "\\text.console.rpg.sln",
   "PreviewInSolutionExplorer": false

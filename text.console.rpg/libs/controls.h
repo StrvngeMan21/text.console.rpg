@@ -14,15 +14,17 @@ enum class Controls
 
 class ControlSystem
 {
+	friend class Map;
+	friend class Map::Impl;
 private:
 	static void upcastPtr(std::shared_ptr<MapObj> upcastingPtr);
-
-	class Impl;
-	std::unique_ptr<Impl> d_;
 public:
 	ControlSystem();
 	~ControlSystem();
 
 	static void takeControl();
 	static void move(Controls button);
+
+	class Impl;
+	std::unique_ptr<Impl> d_;
 };
