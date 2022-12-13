@@ -12,12 +12,16 @@ enum class Controls
 	exitU	= 'E' | 'e',
 };
 
+class Map;
+
 class ControlSystem
 {
-	friend class Map;
-	friend class Map::Impl;
+	friend Map;
 private:
 	static void upcastPtr(std::shared_ptr<MapObj> upcastingPtr);
+
+	class Impl;
+	std::unique_ptr<Impl> d_;
 public:
 	ControlSystem();
 	~ControlSystem();
@@ -25,6 +29,4 @@ public:
 	static void takeControl();
 	static void move(Controls button);
 
-	class Impl;
-	std::unique_ptr<Impl> d_;
 };

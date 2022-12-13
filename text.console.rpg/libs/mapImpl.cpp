@@ -6,6 +6,19 @@
 #include "enemy.h"
 #include "heal.h"
 #include "act.h"
+#include "controls.h"
+
+int Map::m_xSize;
+int Map::m_ySize;
+
+std::array<std::array<std::shared_ptr<MapObj>, 25>, 25> Map::m_mapVec;
+
+std::shared_ptr<Creature> Map::m_playerPtr;
+
+std::shared_ptr<MapObj> Map::m_UpObjPtr;
+std::shared_ptr<MapObj> Map::m_DownObjPtr;
+std::shared_ptr<MapObj> Map::m_LeftObjPtr;
+std::shared_ptr<MapObj> Map::m_RightObjPtr;
 
 class Map::Impl { };
 

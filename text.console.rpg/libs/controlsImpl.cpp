@@ -9,12 +9,9 @@
 #include "act.h"
 
 
-class ControlSystem::Impl
-{
+class ControlSystem::Impl { };
 
-};
-
-ControlSystem::ControlSystem() : d_(std::make_unique<Impl>()) {}
+ControlSystem::ControlSystem() : d_(std::make_unique<Impl>()) { }
 
 ControlSystem::~ControlSystem() {}
 

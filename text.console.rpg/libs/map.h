@@ -5,10 +5,29 @@
 #include "creature.h"
 #include "controls.h"
 
+class ControlSystem;
+
 class Map
 {
-	friend class ControlSystem;
+	friend ControlSystem;
 protected:
+	static void getArea();
+private:
+	int m_seed;
+
+	void genObjects();
+	template <class T>
+	void fillWith();
+	void setObjects();
+
+	static void swapPtrs(std::shared_ptr<MapObj> &first, std::shared_ptr<MapObj> &second);
+public:
+	Map();
+	~Map();
+
+	static int getXSize();
+	static int getYSize();
+
 	static int m_xSize;
 	static int m_ySize;
 
@@ -21,23 +40,6 @@ protected:
 	static std::shared_ptr<MapObj> m_LeftObjPtr;
 	static std::shared_ptr<MapObj> m_RightObjPtr;
 
-	static void getArea();
-private:
-	int m_seed;
-
-	void genObjects();
-	template <class T>
-	void fillWith();
-	void setObjects();
-
-	static void swapPtrs(std::shared_ptr<MapObj> &first, std::shared_ptr<MapObj> &second);
-
-public:
-	Map();
-	~Map();
-
-	static int getXSize();
-	static int getYSize();
 
 	void generate();
 
