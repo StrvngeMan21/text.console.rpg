@@ -46,6 +46,19 @@ void Map::getArea()
 		m_RightObjPtr	= m_mapVec[yCurrentPos][xCurrentPos + 1];
 }
 
+void Map::checkToEmpty()
+{
+	for (int y = 0; y < m_mapVec.size(); y++)
+	{
+		for (int x = 0; x < m_mapVec[y].size(); x++)
+		{
+			if (m_mapVec.at(y).at(x))
+			{}
+			// std::cout << m_mapVec.at(y).at(x)->getId();
+		}
+	}
+}
+
 template <class T>
 void Map::fillWith()
 {
@@ -79,7 +92,7 @@ void Map::genObjects()
 	int playerPosY = m_ySize / 2;
 
 	m_mapVec[playerPosY][playerPosX] = std::move(std::make_shared<Player>(playerPosX, playerPosY));
-	m_playerPtr = std::dynamic_pointer_cast<Creature>(m_mapVec[playerPosY][playerPosX]);
+	m_playerPtr = std::dynamic_pointer_cast<Player>(m_mapVec[playerPosY][playerPosX]);
 
 	fillWith<Enemy>();
 	fillWith<HealEnt>();

@@ -2,7 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\text.console.rpg",
-    "\\text.console.rpg\\x64"
+    "\\text.console.rpg\\libs"
   ],
+  "SelectedNode": "\\text.console.rpg\\libs\\creature.h",
   "PreviewInSolutionExplorer": false
 }

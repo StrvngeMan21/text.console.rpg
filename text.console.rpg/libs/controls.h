@@ -1,6 +1,8 @@
 #pragma once
 
 #include "stdafx.h"
+#include "act.h"
+#include "mapObjects.h"
 #include "map.h"
 
 enum class Controls
@@ -13,10 +15,12 @@ enum class Controls
 };
 
 class Map;
+class Act;
 
 class ControlSystem
 {
 	friend Map;
+	friend Act;
 private:
 	static void upcastPtr(std::shared_ptr<MapObj> upcastingPtr);
 
@@ -28,5 +32,4 @@ public:
 
 	static void takeControl();
 	static void move(Controls button);
-
 };

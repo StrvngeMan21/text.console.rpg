@@ -15,7 +15,7 @@ public:
 	Enemy(int posX, int posY);
 	virtual ~Enemy();
 
-	virtual char getId() const;
+	virtual char getId() const override;
 	virtual const char* getClass() const override;
 
 	virtual void setId(char id);

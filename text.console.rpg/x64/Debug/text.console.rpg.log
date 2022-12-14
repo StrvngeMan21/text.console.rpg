@@ -1,3 +1,19 @@
-﻿  mapImpl.cpp
-  text.console.rpg.cpp
-  text.console.rpg.vcxproj -> C:\Users\merzlikin.ai1667\Source\Repos\StrvngeMan21\text.console.rpg\x64\Debug\text.console.rpg.exe
+﻿  actImpl.cpp
+  controlsImpl.cpp
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(28,13): warning C4101: a: неиспользованная локальная переменная
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\act.h(41,14): error C2144: синтаксическая ошибка: перед "std::shared_ptr<Creature>" требуется ")"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\controlsImpl.cpp(92): message : выполняется компиляция ссылки на экземпляр шаблон функции "void Act::act<std::shared_ptr<Creature>,std::shared_ptr<MapObj>>(T1,T2)"
+          with
+          [
+              T1=std::shared_ptr<Creature>,
+              T2=std::shared_ptr<MapObj>
+          ]
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\act.h(41,8): error C2672: "Act::fight": не найдена соответствующая перегруженная функция
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\act.h(22,14): message : может быть "void Act::fight(const T1,const T2)"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\act.h(41,8): message : void Act::fight(const T1,const T2): требует аргументов: 2, имеется: 0
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\act.h(22): message : см. объявление "Act::fight"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\act.h(41,14): error C2144: синтаксическая ошибка: перед "std::shared_ptr<Creature>" требуется ";"
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\act.h(41,18): error C2059: синтаксическая ошибка: ,
+C:\Users\merzlikin.ai1667\source\repos\StrvngeMan21\text.console.rpg\text.console.rpg\libs\act.h(38,1): error C2059: синтаксическая ошибка: )
+  mapImpl.cpp
+  Создание кода...

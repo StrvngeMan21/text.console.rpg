@@ -10,12 +10,11 @@
 int main()
 {
 	Map map;
+	Enemy e(1,1);
 	map.generate();
 	map.refresh();
 
 	ControlSystem::takeControl();
 
 	map.dbg();
-
-
 }

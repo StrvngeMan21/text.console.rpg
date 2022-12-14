@@ -73,6 +73,13 @@ void ControlSystem::move(Controls button)
 	int pXPos, pYPos;
 	int oXPos, oYPos;
 
+	std::shared_ptr<Creature> player = Map::m_playerPtr;
+
+	std::shared_ptr<MapObj> uObj = Map::m_UpObjPtr;
+	std::shared_ptr<MapObj> dObj = Map::m_DownObjPtr;
+	std::shared_ptr<MapObj> lObj = Map::m_LeftObjPtr;
+	std::shared_ptr<MapObj> rObj = Map::m_RightObjPtr;
+
 	Map::m_playerPtr->getPos(&pXPos, &pYPos);
 
 	switch (button)
@@ -82,7 +89,7 @@ void ControlSystem::move(Controls button)
 		if (Map::m_UpObjPtr->getClass() != typeid(Plain).name())
 		{
 			upcastPtr(Map::m_UpObjPtr);
-			//Act::act(m_playerPtr, m_UpObjPtr);
+			Act::act(player, uObj);
 		}
 		else
 		{
@@ -97,7 +104,7 @@ void ControlSystem::move(Controls button)
 		if (Map::m_DownObjPtr->getClass() != typeid(Plain).name())
 		{
 			upcastPtr(Map::m_UpObjPtr);
-			//Act::act(m_playerPtr, m_UpObjPtr);
+			//Act::act(Map::m_playerPtr, Map::m_UpObjPtr);
 		}
 		else
 		{
@@ -112,7 +119,7 @@ void ControlSystem::move(Controls button)
 		if (Map::m_LeftObjPtr->getClass() != typeid(Plain).name())
 		{
 			upcastPtr(Map::m_UpObjPtr);
-			//Act::act(m_playerPtr, m_UpObjPtr);
+			//Act::act(Map::m_playerPtr, Map::m_UpObjPtr);
 		}
 		else
 		{
@@ -127,7 +134,7 @@ void ControlSystem::move(Controls button)
 		if (Map::m_RightObjPtr->getClass() != typeid(Plain).name())
 		{
 			upcastPtr(Map::m_UpObjPtr);
-			//Act::act(m_playerPtr, m_UpObjPtr);
+			//Act::act(Map::m_playerPtr, Map::m_UpObjPtr);
 		}
 		else
 		{
@@ -137,6 +144,7 @@ void ControlSystem::move(Controls button)
 			Map::swapPtrs(Map::m_mapVec[pYPos][pXPos], Map::m_mapVec[oYPos][oXPos]);
 		}
 	}
+
 	Map::getArea();
 	Map::refresh();
 	Map::dbg();
